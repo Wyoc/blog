@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'http://wyoc.github.io/'
 languageCode = 'fr-fr'
 title = 'Writes'
 theme = "paperesque"
