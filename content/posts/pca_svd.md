@@ -1,7 +1,7 @@
 ---
 title: "L'Analyse en composantes principales est une SVD, avec un twist"
 date: 2023-08-09T11:02:40+02:00
-draft: true
+draft: false
 ---
 
 Au cours de mes études j'ai eu tout le loisir d'aller à la rencontre de plein d'outils mathématiques, mais toujours de façon très compartimentée[^1]. Ainsi se sont faite parallèlement les découvertes de l'Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J'ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici.
