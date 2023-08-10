@@ -1,0 +1,25 @@
+baseURL = 'http://example.org/'
+languageCode = 'fr-fr'
+title = 'Writes'
+theme = "paperesque"
+
+# Uncomment these lines for droplist / resource removal support! See the
+# README for more details
+
+# [outputs]
+# page = ["HTML", "droplist"]
+# [params]
+#   mainSections = ["posts"]
+
+# [[params.menu]]
+#   name = "blog"
+#   url = "posts"
+
+
+[[params.topmenu]]
+  name = "/about"
+  url = "about/"
+
+[[params.topmenu]]
+  name = "/contact"
+  url = "contact/"

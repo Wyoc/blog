@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Writes</title>
+    <link>http://example.org/</link>
+    <description>Recent content on Writes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Wed, 09 Aug 2023 11:02:40 +0200</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>L&#39;Analyse en composantes principales est une SVD, avec un twist</title>
+      <link>http://example.org/posts/pca_svd/</link>
+      <pubDate>Wed, 09 Aug 2023 11:02:40 +0200</pubDate>
+      
+      <guid>http://example.org/posts/pca_svd/</guid>
+      <description>Au cours de mes études j&amp;rsquo;ai eu tout le loisir d&amp;rsquo;aller à la rencontre de plein d&amp;rsquo;outils mathématiques, mais toujours de façon très compartimentée1. Ainsi se sont faite parallèlement les découvertes de l&amp;rsquo;Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J&amp;rsquo;ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://example.org/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/about/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://example.org/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/contact/</guid>
+      <description>test</description>
+    </item>
+    
+  </channel>
+</rss>

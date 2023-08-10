@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html
+  lang="fr-fr"
+  prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#"
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://example.org//apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://example.org//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://example.org//favicon-16x16.png">
+<link rel="manifest" href="http://example.org//site.webmanifest">
+<link rel="mask-icon" href="http://example.org//safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+
+<meta name="keywords" content="">
+
+<meta property="og:title" content="L&#39;Analyse en composantes principales est une SVD, avec un twist" />
+<meta property="og:description" content="Au cours de mes études j&rsquo;ai eu tout le loisir d&rsquo;aller à la rencontre de plein d&rsquo;outils mathématiques, mais toujours de façon très compartimentée1. Ainsi se sont faite parallèlement les découvertes de l&rsquo;Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J&rsquo;ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/pca_svd/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-09T11:02:40+02:00" />
+<meta property="article:modified_time" content="2023-08-09T11:02:40+02:00" />
+
+<meta property="og:site_name" content="Writes" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="L&#39;Analyse en composantes principales est une SVD, avec un twist"/>
+<meta name="twitter:description" content="Au cours de mes études j&rsquo;ai eu tout le loisir d&rsquo;aller à la rencontre de plein d&rsquo;outils mathématiques, mais toujours de façon très compartimentée1. Ainsi se sont faite parallèlement les découvertes de l&rsquo;Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J&rsquo;ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici."/>
+
+
+<meta itemprop="name" content="L&#39;Analyse en composantes principales est une SVD, avec un twist">
+<meta itemprop="description" content="Au cours de mes études j&rsquo;ai eu tout le loisir d&rsquo;aller à la rencontre de plein d&rsquo;outils mathématiques, mais toujours de façon très compartimentée1. Ainsi se sont faite parallèlement les découvertes de l&rsquo;Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J&rsquo;ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici."><meta itemprop="datePublished" content="2023-08-09T11:02:40+02:00" />
+<meta itemprop="dateModified" content="2023-08-09T11:02:40+02:00" />
+<meta itemprop="wordCount" content="168">
+<meta itemprop="keywords" content="" />
+
+
+    <title>L&#39;Analyse en composantes principales est une SVD, avec un twist || Writes</title>
+    <link rel="canonical" href="http://example.org/posts/pca_svd/" />
+
+    
+
+    <link rel="stylesheet" href="/css/reboot.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+<script type="text/javascript" src="/js/main.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Lora&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body
+  class=" look-sheet-bkg"
+  lang="fr-fr">
+  <div class="navbar nav-bkg drop-shadow">
+    <nav class="content-container pagewide-bar-padding">
+      <span class="divider">/ </span>
+      <a href="/" >Writes</a>
+      <span class="divider">/ </span>
+          <a href="/posts/">Posts</a>
+      <ul class="list-unstyled right-links">
+
+          <li>
+            <a href="/about/">
+              <span class="post-title">/about</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/contact/">
+              <span class="post-title">/contact</span>
+            </a>
+          </li>
+
+</ul>
+
+    </nav>
+  </div>
+  <article
+    id="main"
+    class="content-container look-sheet article-pad-v "
+    itemscope
+    itemtype="https://schema.org/Article" >
+  <meta itemprop="author" content="" />
+  <meta itemprop="publisher" content="" />
+  <meta itemprop="image" content="" />
+  <h1 itemprop="name" id="title">L&#39;Analyse en composantes principales est une SVD, avec un twist</h1>
+  <meta itemprop="headline" content="L&#39;Analyse en composantes principales est une SVD, avec un twist" />
+  
+  
+    
+      <div class="post-date"><span itemprop="datePublished">August 9, 2023</span></div>
+      <meta itemprop="dateModified" content="August 9, 2023"/>
+    
+  
+  
+  <div itemprop="articleBody" id="content" class="article-body margin-top-2em">
+    <p>Au cours de mes études j&rsquo;ai eu tout le loisir d&rsquo;aller à la rencontre de plein d&rsquo;outils mathématiques, mais toujours de façon très compartimentée<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Ainsi se sont faite parallèlement les découvertes de l&rsquo;Analyse en Composantes Principales et la Décomposition en Valeurs Singulières (respectivement PCA et SVD par la suite), en cours de stats et d’algèbre. J&rsquo;ai fini par comprendre que les deux étaient liés sur le tard, pendant la thèse, et parce que mon camarade Nathanaël était intéressé par la question, je vais la raconter ici.</p>
+<h1 id="la-svd-cest-quoi-">La SVD, c&rsquo;est quoi ?</h1>
+<p>La décomposition en valeurs singulières (ou <em>singular value decomposition</em> dans la langue de Cher) est ce qu&rsquo;on appelle est une méthode de factorisation de matrice, c&rsquo;est à dire un moyen de transformer une matrice en le produit de plusieurs autres.</p>
+<p>Plus formellement, nous allons considérer une matrice \( M \in \mathbb{R}^{m\times n}\)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Les disciplines communiquaient peu, probablement parce que j&rsquo;étais dans des cursus de physique et d&rsquo;ingénierie.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Autrement dit, une matrice de \(m\) lignes et \(n\) colonnes.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+  </div>
+</article>
+
+  
+    
+  
+
+  
+  </body>
+</html>
